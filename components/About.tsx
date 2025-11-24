@@ -128,10 +128,10 @@ const About: React.FC = () => {
                     <span className="text-yellow-500/80">latest_log.txt</span>
                 </div>
                 <div className="pl-4 border-l border-neutral-800 space-y-1">
-                    <p>> Inicializando módulos de UI...</p>
-                    <p>> Carregando dependências React... <span className="text-green-900 ml-2 font-sans">完了</span></p>
-                    <p>> Otimizando performance do servidor...</p>
-                    <p className="text-green-500 animate-pulse">> Sistema operacional e pronto para novos desafios.</p>
+                    <p>&gt; Inicializando módulos de UI...</p>
+                    <p>&gt; Carregando dependências React... <span className="text-green-900 ml-2 font-sans">完了</span></p>
+                    <p>&gt; Otimizando performance do servidor...</p>
+                    <p className="text-green-500 animate-pulse">&gt; Sistema operacional e pronto para novos desafios.</p>
                 </div>
             </div>
         </div>
