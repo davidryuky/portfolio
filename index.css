@@ -1,0 +1,5 @@
+/* 
+   Styles are currently handled in index.html to ensure compatibility 
+   between local preview (No Build) and Vercel (Build).
+   See index.html <style> block and Tailwind config.
+*/
