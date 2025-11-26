@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { sendMessageToGemini } from '../services/geminiService';
 import { ChatMessage } from '../types';
 import { Terminal, Send, XCircle } from 'lucide-react';
 
@@ -23,19 +22,19 @@ const TerminalChat: React.FC = () => {
   const handleSend = async () => {
     if (!input.trim()) return;
 
+    // Add User Message
     const userMsg: ChatMessage = { role: 'user', text: input };
     setMessages(prev => [...prev, userMsg]);
     setInput('');
     setIsLoading(true);
 
-    try {
-      const responseText = await sendMessageToGemini(userMsg.text);
+    // Simulate "Processing" Delay
+    setTimeout(() => {
+      const responseText = "Olá atualmente estou em desenvolvimento , mas me contate em ✉️ hello@davi.design, sera um prazer lhe atender";
+      
       setMessages(prev => [...prev, { role: 'model', text: responseText }]);
-    } catch (error) {
-      setMessages(prev => [...prev, { role: 'model', text: 'Erro: Conexão perdida.', isError: true }]);
-    } finally {
       setIsLoading(false);
-    }
+    }, 1500);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -64,7 +63,7 @@ const TerminalChat: React.FC = () => {
               <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
               <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
               <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
-              <span className="ml-2 text-neutral-500 text-xs">davi_serafim_ai.exe</span>
+              <span className="ml-2 text-neutral-500 text-xs">davi_serafim_bot.exe</span>
             </div>
             <button 
               onClick={() => setIsOpen(false)}
@@ -89,7 +88,7 @@ const TerminalChat: React.FC = () => {
                   }`}
                 >
                   <p className="leading-relaxed whitespace-pre-wrap font-mono">
-                    {msg.role === 'model' && <span className="mr-2 text-xs opacity-50">[AI]</span>}
+                    {msg.role === 'model' && <span className="mr-2 text-xs opacity-50">[BOT]</span>}
                     {msg.text}
                   </p>
                 </div>
@@ -97,8 +96,8 @@ const TerminalChat: React.FC = () => {
             ))}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="text-green-500 animate-pulse text-xs pl-4 font-mono">
-                  processando_solicitacao...
+                <div className="text-green-500 animate-pulse text-xl pl-4 font-mono font-bold tracking-widest">
+                  ...
                 </div>
               </div>
             )}

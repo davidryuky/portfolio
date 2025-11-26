@@ -2,9 +2,10 @@ import { Project, Skill } from './types';
 
 export const SOCIAL_LINKS = {
   github: "https://github.com",
-  linkedin: "https://linkedin.com",
-  twitter: "https://twitter.com",
-  email: "mailto:contact@daviserafim.dev"
+  linkedin: "https://br.linkedin.com/in/davidserafim",
+  facebook: "https://www.facebook.com/davi.develop",
+  instagram: "https://www.instagram.com/davi.develop/",
+  email: "mailto:hello@davi.design"
 };
 
 export const PROJECTS: Project[] = [
@@ -52,14 +53,3 @@ export const SKILLS: Skill[] = [
   { name: 'Node.js / Backend', level: 85, icon: 'ND' },
   { name: 'UI / UX Design', level: 75, icon: 'UX' },
 ];
-
-export const SYSTEM_PROMPT = `
-Você é um assistente de IA representando Davi Serafim.
-Davi é um Desenvolvedor Full Stack com paixão por código limpo, estética lofi e animes.
-Ele é especialista em React, Node.js e TypeScript.
-Seu tom deve ser: Profissional mas relaxado, levemente "nerd", misterioso e conciso.
-Pense em um personagem de anime cyberpunk ou um droide útil.
-Não use emojis excessivamente. Use emoticons como (-_-) ou (^_^) com moderação, se apropriado para a vibe.
-Se perguntarem sobre informações de contato, forneça: contact@daviserafim.dev.
-Mantenha as respostas curtas e estéticas. Responda sempre em Português do Brasil.
-`;

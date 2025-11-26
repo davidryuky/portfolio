@@ -1,6 +1,6 @@
 import React from 'react';
 import { SKILLS, SOCIAL_LINKS } from '../constants';
-import { Github, Linkedin, Mail, Cpu, Terminal, Shield, Wifi } from 'lucide-react';
+import { Github, Linkedin, Mail, Cpu, Terminal, Shield, Wifi, Facebook, Instagram } from 'lucide-react';
 
 const About: React.FC = () => {
 
@@ -35,7 +35,7 @@ const About: React.FC = () => {
                     {/* Enlarged Photo */}
                     <div className="w-32 h-32 bg-neutral-800 overflow-hidden border border-neutral-700 grayscale contrast-125 relative shrink-0">
                          <img 
-                            src="https://picsum.photos/seed/davi/300/300" 
+                            src="https://i.postimg.cc/sgnd7r7v/Screenshot-2025-11-26-at-17-45-34-(3)-Instagram.png" 
                             alt="Avatar" 
                             className="w-full h-full object-cover opacity-80"
                         />
@@ -77,8 +77,10 @@ const About: React.FC = () => {
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-neutral-800 flex justify-center gap-6">
-                     <a href={SOCIAL_LINKS.github} className="text-neutral-500 hover:text-green-500 transition-colors"><Github size={20} /></a>
-                     <a href={SOCIAL_LINKS.linkedin} className="text-neutral-500 hover:text-blue-500 transition-colors"><Linkedin size={20} /></a>
+                     <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="text-neutral-500 hover:text-green-500 transition-colors"><Github size={20} /></a>
+                     <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="text-neutral-500 hover:text-blue-500 transition-colors"><Linkedin size={20} /></a>
+                     <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="text-neutral-500 hover:text-pink-500 transition-colors"><Instagram size={20} /></a>
+                     <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" className="text-neutral-500 hover:text-blue-600 transition-colors"><Facebook size={20} /></a>
                      <a href={SOCIAL_LINKS.email} className="text-neutral-500 hover:text-red-500 transition-colors"><Mail size={20} /></a>
                 </div>
             </div>
