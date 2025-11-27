@@ -2,9 +2,9 @@ import { Project, Skill } from './types';
 
 export const SOCIAL_LINKS = {
   github: "https://github.com",
-  linkedin: "https://br.linkedin.com/in/davidserafi",
-  facebook: "https://www.facebook.com/davi.develo",
-  instagram: "https://www.instagram.com/davi.develo/",
+  linkedin: "https://br.linkedin.com/in/",
+  facebook: "https://www.facebook.com/",
+  instagram: "https://www.instagram.com/",
   email: "mailto:hello@davi.design"
 };
 
