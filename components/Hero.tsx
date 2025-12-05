@@ -77,7 +77,7 @@ const Hero: React.FC = () => {
                             <div><span className="text-purple-400">import</span> React <span className="text-purple-400">from</span> <span className="text-green-300">'react'</span>;</div>
                             <div>&nbsp;</div>
                             <div><span className="text-purple-400">const</span> <span className="text-yellow-200">Portfolio</span> = () <span className="text-blue-400">=&gt;</span> {'{'}</div>
-                            <div className="pl-4"><span className="text-purple-400">const</span> skills = [<span className="text-green-300">'Dev'</span>, <span className="text-green-300">'Nerd'</span>, <span className="text-green-300">'Lofi'</span>];</div>
+                            <div className="pl-4"><span className="text-purple-400">const</span> skills = [<span className="text-green-300">'Dev'</span>, <span className="text-green-300">'Nerd'</span>, <span className="text-green-300">'Gamer'</span>];</div>
                             <div className="pl-4"><span className="text-purple-400">return</span> (</div>
                             <div className="pl-8 text-neutral-500">&lt;div className="cyberpunk-container"&gt;</div>
                             <div className="pl-12 text-neutral-500">&lt;h1&gt;Ola, Mundo&lt;/h1&gt;</div>
