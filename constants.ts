@@ -2,9 +2,9 @@ import { Project, Skill } from './types';
 
 export const SOCIAL_LINKS = {
   github: "https://github.com",
-  linkedin: "https://br.linkedin.com/in/",
-  facebook: "https://www.facebook.com/",
-  instagram: "https://www.instagram.com/",
+  linkedin: "https://br.linkedin.com/in/davidserafim",
+  facebook: "https://www.facebook.com/davi.develop",
+  instagram: "https://www.instagram.com/davi.develop/",
   email: "mailto:hello@davi.design"
 };
 
@@ -48,8 +48,10 @@ export const PROJECTS: Project[] = [
 ];
 
 export const SKILLS: Skill[] = [
+  { name: 'Pentest / Hacking', level: 99, icon: 'HACK' },
   { name: 'JavaScript / TypeScript', level: 95, icon: 'JS' },
   { name: 'React / Next.js', level: 90, icon: 'RC' },
   { name: 'Node.js / Backend', level: 85, icon: 'ND' },
   { name: 'UI / UX Design', level: 75, icon: 'UX' },
+  { name: 'Cat Lover', level: 100, icon: 'CAT' },
 ];

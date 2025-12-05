@@ -1,6 +1,6 @@
 import React from 'react';
 import { SKILLS, SOCIAL_LINKS } from '../constants';
-import { Github, Linkedin, Mail, Cpu, Terminal, Shield, Wifi, Facebook, Instagram } from 'lucide-react';
+import { Github, Linkedin, Mail, Cpu, Terminal, Shield, Wifi, Facebook, Instagram, Cat } from 'lucide-react';
 
 const About: React.FC = () => {
 
@@ -64,7 +64,7 @@ const About: React.FC = () => {
                 <div className="space-y-3 font-mono text-xs text-neutral-400">
                     <div className="flex justify-between border-b border-neutral-800/50 pb-1">
                         <span className="flex gap-1">LOCALIZAÇÃO <span className="text-neutral-700 font-sans">場所</span></span>
-                        <span className="text-neutral-200">BRASIL [BR]</span>
+                        <span className="text-neutral-200">BRASIL [BR] / JAPÃO [JP]</span>
                     </div>
                     <div className="flex justify-between border-b border-neutral-800/50 pb-1">
                         <span className="flex gap-1">UPTIME <span className="text-neutral-700 font-sans">稼働時間</span></span>
@@ -106,7 +106,7 @@ const About: React.FC = () => {
                     <div key={skill.name} className="group">
                         <div className="flex justify-between font-mono text-xs mb-2">
                             <span className="text-neutral-300 group-hover:text-green-400 transition-colors flex items-center gap-2">
-                                {'>'} {skill.name}
+                                {skill.icon === 'CAT' ? <Cat size={14} className="text-green-500" /> : '>'} {skill.name}
                             </span>
                             <span className="text-green-500 font-bold text-shadow-green">[{skill.level}%]</span>
                         </div>
