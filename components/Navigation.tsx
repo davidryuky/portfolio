@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronRight } from 'lucide-react';
 
-const Navigation: React.FC = () => {
+interface NavigationProps {
+  onOpenTerminal: () => void;
+}
+
+const Navigation: React.FC<NavigationProps> = ({ onOpenTerminal }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // Prevent scrolling when menu is open to improve mobile UX
@@ -18,6 +22,12 @@ const Navigation: React.FC = () => {
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
+
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    onOpenTerminal();
+    closeMenu();
+  };
 
   return (
     <nav className="fixed top-0 left-0 w-full z-[100] transition-all duration-300">
@@ -43,7 +53,7 @@ const Navigation: React.FC = () => {
             <span>02. Missões</span>
             <span className="absolute -bottom-3 text-[9px] text-cyan-600 opacity-0 group-hover:opacity-100 transition-all font-sans">ミッション</span>
           </a>
-          <a href="#contact" className="group flex flex-col items-center hover:text-neutral-100 transition-colors relative">
+          <a href="#contact" onClick={handleContactClick} className="group flex flex-col items-center hover:text-neutral-100 transition-colors relative cursor-pointer">
             <span>03. Contato</span>
             <span className="absolute -bottom-3 text-[9px] text-red-600 opacity-0 group-hover:opacity-100 transition-all font-sans">コンタクト</span>
           </a>
@@ -104,7 +114,7 @@ const Navigation: React.FC = () => {
                      <ChevronRight className="text-neutral-600 group-hover:text-cyan-500 transition-transform group-hover:translate-x-1 relative z-10" size={24} />
                 </a>
                 
-                <a href="#contact" onClick={closeMenu} className="group flex items-center justify-between p-5 border border-neutral-800 bg-neutral-900/50 hover:bg-neutral-800 hover:border-red-500 transition-all duration-300 rounded-sm shadow-lg relative overflow-hidden backdrop-blur-sm">
+                <a href="#contact" onClick={handleContactClick} className="group flex items-center justify-between p-5 border border-neutral-800 bg-neutral-900/50 hover:bg-neutral-800 hover:border-red-500 transition-all duration-300 rounded-sm shadow-lg relative overflow-hidden backdrop-blur-sm">
                      <div className="absolute inset-0 bg-red-500/5 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"></div>
 
                      <div className="flex flex-col gap-1 relative z-10">

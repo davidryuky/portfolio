@@ -2,8 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ChatMessage } from '../types';
 import { Terminal, Send, XCircle } from 'lucide-react';
 
-const TerminalChat: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+interface TerminalChatProps {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+}
+
+const TerminalChat: React.FC<TerminalChatProps> = ({ isOpen, setIsOpen }) => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([
     { role: 'model', text: 'Sistema Online. Bem-vindo à Interface Serafim. Como posso ajudar?' }
@@ -16,7 +20,9 @@ const TerminalChat: React.FC = () => {
   };
 
   useEffect(() => {
-    scrollToBottom();
+    if (isOpen) {
+      scrollToBottom();
+    }
   }, [messages, isOpen]);
 
   const handleSend = async () => {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import TerminalChat from './components/TerminalChat';
 
 const App: React.FC = () => {
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
   
   // Easter egg console log
   useEffect(() => {
@@ -15,6 +16,10 @@ const App: React.FC = () => {
       "background: #000; color: #00ff00; font-family: monospace; padding: 10px; font-size: 12px;"
     );
   }, []);
+
+  const handleOpenTerminal = () => {
+    setIsTerminalOpen(true);
+  };
 
   return (
     <div className="relative bg-void text-ghost min-h-screen selection:bg-green-500/30 selection:text-green-100 font-sans">
@@ -25,7 +30,7 @@ const App: React.FC = () => {
 
       {/* Main Content */}
       <div className="relative z-10">
-        <Navigation />
+        <Navigation onOpenTerminal={handleOpenTerminal} />
         <main>
           <Hero />
           <About />
@@ -35,7 +40,7 @@ const App: React.FC = () => {
       </div>
 
       {/* Interactive Elements */}
-      <TerminalChat />
+      <TerminalChat isOpen={isTerminalOpen} setIsOpen={setIsTerminalOpen} />
     </div>
   );
 };
