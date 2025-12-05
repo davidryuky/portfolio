@@ -35,7 +35,7 @@ const About: React.FC = () => {
                     {/* Enlarged Photo */}
                     <div className="w-32 h-32 bg-neutral-800 overflow-hidden border border-neutral-700 grayscale contrast-125 relative shrink-0">
                          <img 
-                            src="https://i.postimg.cc/sgnd7r7v/Screenshot-2025-11-26-at-17-45-34-(3)-Instagram.pn" 
+                            src="https://i.postimg.cc/sgnd7r7v/Screenshot-2025-11-26-at-17-45-34-(3)-Instagram.png" 
                             alt="Avatar" 
                             className="w-full h-full object-cover opacity-80"
                         />
