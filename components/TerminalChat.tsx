@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChatMessage } from '../types';
-import { Terminal, Send, XCircle } from 'lucide-react';
+import { SOCIAL_LINKS } from '../constants';
+import { Terminal, Send, XCircle, Github, Linkedin, Mail, Facebook, Instagram } from 'lucide-react';
 
 interface TerminalChatProps {
   isOpen: boolean;
@@ -36,9 +37,15 @@ const TerminalChat: React.FC<TerminalChatProps> = ({ isOpen, setIsOpen }) => {
 
     // Simulate "Processing" Delay
     setTimeout(() => {
-      const responseText = "Olá atualmente estou em desenvolvimento , mas me contate em ✉️ hello@davi.design, sera um prazer lhe atender";
+      const responseText = `Olá! Que bom ter você por aqui. Estou totalmente disponível para novos projetos e desafios. 🚀
+
+Basta me contatar onde desejar! Clique nos links abaixo:`;
       
-      setMessages(prev => [...prev, { role: 'model', text: responseText }]);
+      setMessages(prev => [...prev, { 
+        role: 'model', 
+        text: responseText,
+        hasSocialLinks: true 
+      }]);
       setIsLoading(false);
     }, 1500);
   };
@@ -97,6 +104,27 @@ const TerminalChat: React.FC<TerminalChatProps> = ({ isOpen, setIsOpen }) => {
                     {msg.role === 'model' && <span className="mr-2 text-xs opacity-50">[BOT]</span>}
                     {msg.text}
                   </p>
+
+                  {/* Social Links Row */}
+                  {msg.hasSocialLinks && (
+                    <div className="flex flex-wrap gap-5 mt-4 pt-3 border-t border-green-500/30">
+                        <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors hover:scale-110 transform duration-200" title="GitHub">
+                            <Github size={20} />
+                        </a>
+                        <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors hover:scale-110 transform duration-200" title="LinkedIn">
+                            <Linkedin size={20} />
+                        </a>
+                        <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-pink-400 transition-colors hover:scale-110 transform duration-200" title="Instagram">
+                            <Instagram size={20} />
+                        </a>
+                        <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors hover:scale-110 transform duration-200" title="Facebook">
+                            <Facebook size={20} />
+                        </a>
+                        <a href={SOCIAL_LINKS.email} className="hover:text-red-400 transition-colors hover:scale-110 transform duration-200" title="Email">
+                            <Mail size={20} />
+                        </a>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
