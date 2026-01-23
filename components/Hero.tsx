@@ -3,6 +3,12 @@ import GlitchText from './GlitchText';
 import { Terminal } from 'lucide-react';
 
 const Hero: React.FC = () => {
+  // Expanded Tech Stack
+  const techStack = [
+    'REACT', 'NEXT.JS', 'TYPESCRIPT', 'NODE.JS', 
+    'PYTHON', 'SQL', 'DOCKER', 'AWS', 'TAILWIND'
+  ];
+
   return (
     <section className="min-h-screen flex items-center justify-center relative pt-20 border-b border-neutral-900 overflow-hidden">
       
@@ -27,17 +33,21 @@ const Hero: React.FC = () => {
             
             <div className="h-px w-24 bg-gradient-to-r from-green-500 to-transparent my-2"></div>
 
-            <p className="font-mono text-neutral-400 text-sm md:text-base leading-relaxed max-w-md">
+            <p className="font-mono text-neutral-400 text-sm md:text-base leading-relaxed max-w-xl">
                 <span className="text-green-500 mr-2">const</span>
-                role = <span className="text-yellow-200">"Full Stack Engineer"</span>;
-                <span className="ml-2 text-neutral-600 font-sans text-xs"> // エンジニア</span>
+                mission = <span className="text-yellow-200">"High Impact Solutions"</span>;
+                <span className="ml-2 text-neutral-600 font-sans text-xs"> // ミッション</span>
                 <br />
-                <span className="text-neutral-600">// Criando sistemas robustos e interfaces minimalistas.</span>
+                <span className="text-neutral-400 block mt-2 leading-relaxed">
+                   // Transformo conceitos complexos em software de alta performance. 
+                   <br/>
+                   // Especialista em arquiteturas escaláveis e experiências digitais imersivas que impulsionam negócios e retêm usuários.
+                </span>
             </p>
 
-            <div className="flex flex-wrap gap-3 mt-4">
-               {['REACT', 'NODE.JS', 'TYPESCRIPT', 'SQL'].map(tech => (
-                 <span key={tech} className="px-2 py-1 bg-neutral-900 border border-neutral-800 text-xs font-mono text-neutral-400 hover:border-green-500 hover:text-green-500 transition-colors cursor-default hover:shadow-[0_0_10px_rgba(34,197,94,0.2)]">
+            <div className="flex flex-wrap gap-2 mt-4">
+               {techStack.map(tech => (
+                 <span key={tech} className="px-3 py-1 bg-neutral-900/50 border border-neutral-800 text-[10px] md:text-xs font-mono text-neutral-400 hover:border-green-500 hover:text-green-500 transition-all cursor-default hover:shadow-[0_0_10px_rgba(34,197,94,0.2)] hover:-translate-y-0.5">
                    {tech}
                  </span>
                ))}
@@ -77,7 +87,7 @@ const Hero: React.FC = () => {
                             <div><span className="text-purple-400">import</span> React <span className="text-purple-400">from</span> <span className="text-green-300">'react'</span>;</div>
                             <div>&nbsp;</div>
                             <div><span className="text-purple-400">const</span> <span className="text-yellow-200">Portfolio</span> = () <span className="text-blue-400">=&gt;</span> {'{'}</div>
-                            <div className="pl-4"><span className="text-purple-400">const</span> skills = [<span className="text-green-300">'Dev'</span>, <span className="text-green-300">'Nerd'</span>, <span className="text-green-300">'Gamer'</span>];</div>
+                            <div className="pl-4"><span className="text-purple-400">const</span> skills = [<span className="text-green-300">'Architecture'</span>, <span className="text-green-300">'Performance'</span>, <span className="text-green-300">'Scale'</span>];</div>
                             <div className="pl-4"><span className="text-purple-400">return</span> (</div>
                             <div className="pl-8 text-neutral-500">&lt;div className="cyberpunk-container"&gt;</div>
                             <div className="pl-12 text-neutral-500">&lt;h1&gt;Ola, Mundo&lt;/h1&gt;</div>

@@ -4,7 +4,7 @@ import { Terminal, FolderOpen, ExternalLink, Code } from 'lucide-react';
 
 const Projects: React.FC = () => {
   return (
-    <section id="projects" className="py-24 border-b border-neutral-900 bg-neutral-950/50">
+    <section id="projetos_deploy" className="py-24 border-b border-neutral-900 bg-neutral-950/50">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-16 border-b border-neutral-800 pb-4 gap-2">
           <div className="flex items-center gap-4">
