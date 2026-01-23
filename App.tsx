@@ -3,12 +3,30 @@ import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
+import Blog from './components/Blog';
 import Footer from './components/Footer';
 import TerminalChat from './components/TerminalChat';
 
 const App: React.FC = () => {
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
+  const [currentRoute, setCurrentRoute] = useState(window.location.pathname);
   
+  // Handle Back/Forward browser buttons
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentRoute(window.location.pathname);
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // Custom navigation function
+  const navigate = (path: string) => {
+    window.history.pushState({}, '', path);
+    setCurrentRoute(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   // Easter egg console log
   useEffect(() => {
     console.log(
@@ -30,12 +48,24 @@ const App: React.FC = () => {
 
       {/* Main Content */}
       <div className="relative z-10">
-        <Navigation onOpenTerminal={handleOpenTerminal} />
+        <Navigation 
+            onOpenTerminal={handleOpenTerminal} 
+            currentRoute={currentRoute}
+            onNavigate={navigate}
+        />
+        
         <main>
-          <Hero />
-          <About />
-          <Projects />
+          {currentRoute === '/blog' ? (
+            <Blog />
+          ) : (
+            <>
+              <Hero />
+              <About />
+              <Projects />
+            </>
+          )}
         </main>
+        
         <Footer />
       </div>
 

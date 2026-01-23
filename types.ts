@@ -19,3 +19,13 @@ export interface ChatMessage {
   text: string;
   isError?: boolean;
 }
+
+export interface BlogPost {
+  id: string;
+  title: string;
+  date: string;
+  category: string;
+  excerpt: string;
+  content: string[]; // Array of paragraphs
+  readTime: string;
+}

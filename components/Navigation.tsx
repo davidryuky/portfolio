@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronRight, Terminal, Activity, Send } from 'lucide-react';
+import { Menu, X, ChevronRight, Terminal, Activity, Send, BookOpen } from 'lucide-react';
 
 interface NavigationProps {
   onOpenTerminal: () => void;
+  currentRoute: string;
+  onNavigate: (path: string) => void;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ onOpenTerminal }) => {
+const Navigation: React.FC<NavigationProps> = ({ onOpenTerminal, currentRoute, onNavigate }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -31,6 +33,22 @@ const Navigation: React.FC<NavigationProps> = ({ onOpenTerminal }) => {
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
+  const handleLinkClick = (e: React.MouseEvent, path: string, hash?: string) => {
+    e.preventDefault();
+    closeMenu();
+    
+    if (path === currentRoute && hash) {
+        // Just scroll if we are on the page
+        const element = document.querySelector(hash);
+        element?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        // Navigate
+        onNavigate(path);
+        // If there is a hash, we might need to handle scroll after nav in App.tsx, 
+        // but for simplicity in this hybrid router, we usually just go to top of new page.
+    }
+  };
+
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault();
     onOpenTerminal();
@@ -48,7 +66,7 @@ const Navigation: React.FC<NavigationProps> = ({ onOpenTerminal }) => {
       <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between relative z-[101]">
         
         {/* Logo */}
-        <a href="#" onClick={closeMenu} className="font-mono text-xl tracking-tighter font-bold text-neutral-100 flex items-center gap-3 group cursor-pointer select-none">
+        <a href="/" onClick={(e) => handleLinkClick(e, '/')} className="font-mono text-xl tracking-tighter font-bold text-neutral-100 flex items-center gap-3 group cursor-pointer select-none">
           <div className="relative">
             <div className={`w-2.5 h-2.5 bg-green-500 rounded-sm rotate-45 ${!isOpen ? 'animate-pulse' : ''} shadow-[0_0_10px_#22c55e]`}></div>
             <div className="absolute inset-0 border border-green-500/50 rounded-sm rotate-45 scale-150 animate-ping opacity-20"></div>
@@ -63,7 +81,7 @@ const Navigation: React.FC<NavigationProps> = ({ onOpenTerminal }) => {
         <div className="hidden md:flex items-center gap-12 font-mono text-sm font-medium tracking-wide">
           
           {/* Perfil - Green Theme */}
-          <a href="#about" className="group relative px-4 py-2 text-neutral-400 hover:text-green-400 transition-colors duration-300">
+          <a href="/#about" onClick={(e) => handleLinkClick(e, '/', '#about')} className="group relative px-4 py-2 text-neutral-400 hover:text-green-400 transition-colors duration-300">
             <span className="absolute inset-0 bg-green-500/5 rounded-md scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300"></span>
             <div className="relative flex items-center gap-2">
                 <Activity size={16} className="text-neutral-600 group-hover:text-green-500 transition-colors duration-300" />
@@ -73,13 +91,23 @@ const Navigation: React.FC<NavigationProps> = ({ onOpenTerminal }) => {
           </a>
 
           {/* Projetos - Cyan Theme */}
-          <a href="#projetos_deploy" className="group relative px-4 py-2 text-neutral-400 hover:text-cyan-400 transition-colors duration-300">
+          <a href="/#projetos_deploy" onClick={(e) => handleLinkClick(e, '/', '#projetos_deploy')} className="group relative px-4 py-2 text-neutral-400 hover:text-cyan-400 transition-colors duration-300">
             <span className="absolute inset-0 bg-cyan-500/5 rounded-md scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300"></span>
             <div className="relative flex items-center gap-2">
                 <Terminal size={16} className="text-neutral-600 group-hover:text-cyan-500 transition-colors duration-300" />
                 <span>PROJETOS</span>
             </div>
             <div className="absolute bottom-1 left-4 w-0 h-[1px] bg-cyan-500 group-hover:w-[calc(100%-32px)] transition-all duration-300 delay-75"></div>
+          </a>
+
+          {/* Blog - Purple Theme */}
+          <a href="/blog" onClick={(e) => handleLinkClick(e, '/blog')} className={`group relative px-4 py-2 hover:text-purple-400 transition-colors duration-300 ${currentRoute === '/blog' ? 'text-purple-400' : 'text-neutral-400'}`}>
+            <span className="absolute inset-0 bg-purple-500/5 rounded-md scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300"></span>
+            <div className="relative flex items-center gap-2">
+                <BookOpen size={16} className={`group-hover:text-purple-500 transition-colors duration-300 ${currentRoute === '/blog' ? 'text-purple-500' : 'text-neutral-600'}`} />
+                <span>BLOG</span>
+            </div>
+            <div className={`absolute bottom-1 left-4 h-[1px] bg-purple-500 transition-all duration-300 delay-75 ${currentRoute === '/blog' ? 'w-[calc(100%-32px)]' : 'w-0 group-hover:w-[calc(100%-32px)]'}`}></div>
           </a>
 
           {/* Contato - Red Theme */}
@@ -130,7 +158,7 @@ const Navigation: React.FC<NavigationProps> = ({ onOpenTerminal }) => {
             </div>
 
             <div className="flex flex-col gap-4">
-                <a href="#about" onClick={closeMenu} className="group flex items-center justify-between p-6 border border-neutral-800 bg-neutral-900/40 hover:bg-neutral-900 hover:border-green-500 transition-all duration-300 rounded-lg shadow-lg relative overflow-hidden backdrop-blur-sm">
+                <a href="/#about" onClick={(e) => handleLinkClick(e, '/', '#about')} className="group flex items-center justify-between p-6 border border-neutral-800 bg-neutral-900/40 hover:bg-neutral-900 hover:border-green-500 transition-all duration-300 rounded-lg shadow-lg relative overflow-hidden backdrop-blur-sm">
                      {/* Hover Glow Effect */}
                      <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500"></div>
                      
@@ -144,7 +172,7 @@ const Navigation: React.FC<NavigationProps> = ({ onOpenTerminal }) => {
                      <ChevronRight className="text-neutral-700 group-hover:text-green-500 transition-transform group-hover:translate-x-1 relative z-10" size={20} />
                 </a>
                 
-                <a href="#projetos_deploy" onClick={closeMenu} className="group flex items-center justify-between p-6 border border-neutral-800 bg-neutral-900/40 hover:bg-neutral-900 hover:border-cyan-500 transition-all duration-300 rounded-lg shadow-lg relative overflow-hidden backdrop-blur-sm">
+                <a href="/#projetos_deploy" onClick={(e) => handleLinkClick(e, '/', '#projetos_deploy')} className="group flex items-center justify-between p-6 border border-neutral-800 bg-neutral-900/40 hover:bg-neutral-900 hover:border-cyan-500 transition-all duration-300 rounded-lg shadow-lg relative overflow-hidden backdrop-blur-sm">
                      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500"></div>
 
                      <div className="flex items-center gap-4 relative z-10">
@@ -155,6 +183,19 @@ const Navigation: React.FC<NavigationProps> = ({ onOpenTerminal }) => {
                         </div>
                      </div>
                      <ChevronRight className="text-neutral-700 group-hover:text-cyan-500 transition-transform group-hover:translate-x-1 relative z-10" size={20} />
+                </a>
+
+                <a href="/blog" onClick={(e) => handleLinkClick(e, '/blog')} className="group flex items-center justify-between p-6 border border-neutral-800 bg-neutral-900/40 hover:bg-neutral-900 hover:border-purple-500 transition-all duration-300 rounded-lg shadow-lg relative overflow-hidden backdrop-blur-sm">
+                     <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500"></div>
+
+                     <div className="flex items-center gap-4 relative z-10">
+                        <BookOpen className="text-neutral-600 group-hover:text-purple-500 transition-colors" size={20} />
+                        <div className="flex flex-col">
+                            <span className="text-[10px] text-purple-800 font-sans tracking-widest font-bold group-hover:text-purple-600 transition-colors">// KNOWLEDGE</span>
+                            <span className="text-xl font-bold text-neutral-300 group-hover:text-white transition-colors tracking-tight font-mono">BLOG</span>
+                        </div>
+                     </div>
+                     <ChevronRight className="text-neutral-700 group-hover:text-purple-500 transition-transform group-hover:translate-x-1 relative z-10" size={20} />
                 </a>
                 
                 <a href="#contact" onClick={handleContactClick} className="group flex items-center justify-between p-6 border border-neutral-800 bg-neutral-900/40 hover:bg-neutral-900 hover:border-red-500 transition-all duration-300 rounded-lg shadow-lg relative overflow-hidden backdrop-blur-sm">
